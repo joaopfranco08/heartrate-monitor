@@ -18,6 +18,7 @@ LED_PATH_VERDE = f"/sys/class/gpio/gpio{LED_NUMBER_VERDE}/"
 
 SYSFS_DIR = "/sys/class/gpio/"
 
+contador = 0
 
 def writeLED ( filename, value, path ):
         "Esta funcao escreve o valor 'value' no arquivo 'path+filename'"
@@ -36,21 +37,24 @@ writeLED (filename="direction", value="out", path = LED_PATH_VERMELHO)
 writeLED (filename="direction", value="out", path = LED_PATH_AMARELO)
 writeLED (filename="direction", value="out", path = LED_PATH_VERDE)
 
-# LIGA LED VERMELHO
-writeLED (filename=f"value", value="1", path = LED_PATH_VERMELHO)
-sleep(2)
-writeLED (filename=f"value", value="0", path = LED_PATH_VERMELHO)
+while contador <= 5:
+	# LIGA LED VERMELHO
+	writeLED (filename=f"value", value="1", path = LED_PATH_VERMELHO)
+	sleep(2)
+	writeLED (filename=f"value", value="0", path = LED_PATH_VERMELHO)
 
 #
-# LIGA LED AMARELO
-writeLED (filename=f"value", value="1", path = LED_PATH_AMARELO)
-sleep(1)
-writeLED (filename=f"value", value="0", path = LED_PATH_AMARELO)
+	# LIGA LED AMARELO
+	writeLED (filename=f"value", value="1", path = LED_PATH_AMARELO)
+	sleep(1)
+	writeLED (filename=f"value", value="0", path = LED_PATH_AMARELO)
 
-# LIGA LED VERDE
-writeLED (filename=f"value", value="1", path = LED_PATH_VERDE)
-sleep(1)
-writeLED (filename=f"value", value="0", path = LED_PATH_VERDE)
+	# LIGA LED VERDE
+	writeLED (filename=f"value", value="1", path = LED_PATH_VERDE)
+	sleep(1)
+	writeLED (filename=f"value", value="0", path = LED_PATH_VERDE)
+
+	contador += 1
 
 writeLED (filename="unexport", value=LED_NUMBER_VERMELHO, path=SYSFS_DIR)
 writeLED (filename="unexport", value=LED_NUMBER_AMARELO, path=SYSFS_DIR)
