@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
         writeGPIO(GPIO_PATH_VERDE "value", "1");
         sleep(1); // aguarda 1 segundos
         writeGPIO(GPIO_PATH_VERDE "value", "0");
+
+        counter++
     }
     writeGPIO(GPIO_SYSFS_VERMELHO "unexport", GPIO_VERMELHO);
     writeGPIO(GPIO_SYSFS_AMARELO "unexport", GPIO_AMARELO);
