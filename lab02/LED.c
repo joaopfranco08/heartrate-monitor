@@ -35,11 +35,17 @@ int main(int argc, char *argv[])
 #criando o export para cada entrada do gpio
     writeGPIO(GPIO_SYSFS_AMARELO "export", GPIO_AMARELO);
     usleep(100000); // aguarda 100ms
+    writeGPIO(GPIO_PATH_AMARELO "direction", "out");
+    usleep(100000); // aguarda 100ms
 
     writeGPIO(GPIO_SYSFS_VERMELHO "export", GPIO_VERMELHO);
     usleep(100000); // aguarda 100ms
+    writeGPIO(GPIO_PATH_VERMELHO "direction", "out");
+    usleep(100000); // aguarda 100ms
 
     writeGPIO(GPIO_SYSFS_VERDE "export", GPIO_VERDE);
+    usleep(100000); // aguarda 100ms
+    writeGPIO(GPIO_PATH_VERDE "direction", "out");
     usleep(100000); // aguarda 100ms
 
     while (counter <= 5)
