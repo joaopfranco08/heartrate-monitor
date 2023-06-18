@@ -4,7 +4,6 @@
 # Derek Molloy, Exploring Raspberry Pi: Interfacing to the Real World with Embedded Linux,
 # Wiley 2016, ISBN 978-1-119-1868-1, http://www.exploringrpi.com/
 
-import sys
 from time import sleep
 
 LED_NUMBER_VERMELHO = "20"
@@ -21,11 +20,11 @@ SYSFS_DIR = "/sys/class/gpio/"
 contador = 0
 
 def writeLED ( filename, value, path ):
-        "Esta funcao escreve o valor 'value' no arquivo 'path+filename'"
-        fo = open( path + filename,"w")
-        fo.write(value)
-        fo.close()
-        return
+	"Esta funcao escreve o valor 'value' no arquivo 'path+filename'"
+	fo = open( path + filename,"w")
+	fo.write(value)
+	fo.close()
+	return
 
 print("Habilitando a gpio")
 #HABILITA GPIO VERMELHO
