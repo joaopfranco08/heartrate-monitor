@@ -18,7 +18,7 @@
 #define GPIO_PATH_VERDE "/sys/class/gpio/gpio21/"
 #define GPIO_SYSFS_VERDE "/sys/class/gpio/"
 
-#cria funcao que escreve o valor 0 ou 1 no arquivo de cada led
+// cria funcao que escreve o valor 0 ou 1 no arquivo de cada led
 void writeGPIO(char filename[], char value[])
 {
     FILE *fp;                   // cria um ponteiro fp
@@ -29,10 +29,10 @@ void writeGPIO(char filename[], char value[])
 
 int main(int argc, char *argv[])
 {
-#contador
+//contador
     int counter = 0 printf("Habilitando a gpio\n");
 
-#criando o export para cada entrada do gpio
+//criando o export para cada entrada do gpio
     writeGPIO(GPIO_SYSFS_AMARELO "export", GPIO_AMARELO);
     usleep(100000); // aguarda 100ms
     writeGPIO(GPIO_PATH_AMARELO "direction", "out");
