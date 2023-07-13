@@ -18,7 +18,7 @@ int main(){
 
         pwmSetMode(PWM_MODE_MS);
         pwmSetRange(range);
-        pwmSetClock(574);
+        pwmSetClock(574); // frequencia = 261.1 Hz calculado no alarme
 
 	pwmWrite(pino_PWM0, dc);
 	usleep(300000);
