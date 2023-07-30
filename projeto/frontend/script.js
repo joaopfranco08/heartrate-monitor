@@ -1,7 +1,5 @@
-//set property: 
+//set property:
 
-document.documentElement.style
-    .setProperty('--bpm-value', 11);
 
 document.documentElement.style
     .setProperty('--oxigenacao-value', 98);
@@ -51,10 +49,21 @@ function addData(chart, label, data) {
     chart.update();
 }
 
+// random bpm value generator
+function randomBeatValue() {
+    return new Promise((resolve) => {
+        let t = Math.floor(Math.random() * (100 - 1 + 1)) + 1
+        setTimeout(() => resolve(t), 2000);
+    });
+}
+
 // randomly add new data
-setInterval(function () {
+setInterval(async function () {
     const newLabel = ' '//(Math.random() + 1).toString(36).substring(7);
-    const newData = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+    const newData = await randomBeatValue();
+
+    document.documentElement.style
+    .setProperty('--bpm-value', newData);
     addData(myChart, newLabel, newData);
 
 }, 100);
