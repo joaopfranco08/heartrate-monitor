@@ -1,3 +1,8 @@
+:root {
+  --bpm-value: 0;
+  --oxigenacao-value: 0;
+}
+
 @property --progress-value-bpm {
   syntax: '<integer>';
   inherits: false;
@@ -11,11 +16,11 @@
 }
 
 @keyframes bpm-progress {
-  to { --progress-value-bpm: 92; }
+  to { --progress-value-bpm: var(--bpm-value); }
 }
 
 @keyframes oxigenacao-progress {
-  to { --progress-value-oxigenacao: 87; }
+  to { --progress-value-oxigenacao: var(--oxigenacao-value); }
 }
 
 .progress-bar-bpm {
