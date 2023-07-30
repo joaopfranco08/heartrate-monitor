@@ -25,11 +25,13 @@
 }
 
 .progress-bar-bpm {
-  width: 100px;
-  height: 100px;
+  margin-top: 30%;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   
   /* to center the percentage value */
+  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +46,7 @@
   background: 
     radial-gradient(closest-side, white 79%, transparent 80% 100%),
     conic-gradient(var(--bpm-flag) calc(var(--progress-value-bpm) * 1%), rgb(250, 164, 179) 0);
-  animation: bpm-progress 2s 1 forwards;
+  /*animation: bpm-progress 2s 1 forwards;*/
 }
 
 .bpm::before {
@@ -71,7 +73,7 @@
   background: 
     radial-gradient(closest-side, white 79%, transparent 80% 100%, white 0),
     conic-gradient(rgb(17, 50, 183) calc(var(--progress-value-oxigenacao) * 1%), rgb(190, 210, 244) 0);
-  animation: oxigenacao-progress 2s 1 forwards;
+  /*animation: bpm-progress 2s 1 forwards;*/
 }
 
 .oxigenacao::before {

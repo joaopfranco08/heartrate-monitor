@@ -10,6 +10,7 @@ getComputedStyle(document.documentElement)
     .getPropertyValue('--bpm-value'); // returns value
 
 const canvas = document.getElementById('myChart');
+
 canvas.height = 75;
 
 const labels = [
@@ -79,5 +80,55 @@ setInterval(async function () {
     document.documentElement.style
     .setProperty('--bpm-value', newData);
     addData(myChart, newLabel, newData);
+
+}, 100);
+
+
+class RealTimeChart {
+    constructor(elementId, chartLabels, chartData, chartConfig) {
+
+        this.canvas = document.getElementById(elementId);
+    
+        this.labels = chartLabels;
+
+        this.data = chartData;
+
+        this.config = chartConfig;
+
+        this.canvas.height = 75;
+
+        this.chart = new Chart(
+            this.canvas,
+            this.config
+        );
+
+    }
+
+    getChart() {
+        return this.chart;
+    }
+
+    updateData(label, data) {
+        this.chart.data.labels.push(label);
+        this.chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        this.chart.update();
+    }
+}
+
+const oxChart= new RealTimeChart('oxigenacao-chart', ['', '', ''], data, config)
+
+// randomly add new data
+setInterval(async function () {
+    const newLabel = ' '//(Math.random() + 1).toString(36).substring(7);
+    const newData = await randomBeatValue();
+
+    await checkHeartBeatRange(newData)
+
+    document.documentElement.style
+    .setProperty('--bpm-value', newData);
+
+    oxChart.updateData(newLabel, newData);
 
 }, 100);
