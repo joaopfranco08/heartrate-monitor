@@ -1,11 +1,13 @@
 //set property: 
 
 document.documentElement.style
-    .setProperty('--progress-value-bpm', 65);
+    .setProperty('--bpm-value', 65);
+
+document.documentElement.style
+    .setProperty('--oxigenacao-value', 98);
 
 //get property
 
 getComputedStyle(document.documentElement)
-    .getPropertyValue('--my-variable-name'); // returns value
+    .getPropertyValue('--bpm-value'); // returns value
 
-  
