@@ -1,0 +1,79 @@
+@property --progress-value-bpm {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --progress-value-oxigenacao {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes bpm-progress {
+  to { --progress-value-bpm: 92; }
+}
+
+@keyframes oxigenacao-progress {
+  to { --progress-value-oxigenacao: 87; }
+}
+
+.progress-bar-bpm {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  
+  /* to center the percentage value */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-bar-bpm::before {
+  counter-reset: percentage var(--progress-value-bpm);
+  content: counter(percentage);
+}
+
+.bpm {
+  background: 
+    radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(rgb(211, 13, 13) calc(var(--progress-value-bpm) * 1%), rgb(250, 164, 179) 0);
+  animation: bpm-progress 2s 1 forwards;
+}
+
+.bpm::before {
+  animation: bpm-progress 2s 1 forwards;
+}
+
+.progress-bar-oxigenacao {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  
+  /* to center the percentage value */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-bar-oxigenacao::before {
+  counter-reset: percentage var(--progress-value-oxigenacao);
+  content: counter(percentage);
+}
+
+.oxigenacao {
+  background: 
+    radial-gradient(closest-side, white 79%, transparent 80% 100%, white 0),
+    conic-gradient(rgb(17, 50, 183) calc(var(--progress-value-oxigenacao) * 1%), rgb(190, 210, 244) 0);
+  animation: oxigenacao-progress 2s 1 forwards;
+}
+
+.oxigenacao::before {
+  animation: oxigenacao-progress 2s 1 forwards;
+}
+
+progress {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
