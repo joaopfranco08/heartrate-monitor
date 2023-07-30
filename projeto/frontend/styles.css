@@ -1,6 +1,7 @@
 :root {
   --bpm-value: 0;
   --oxigenacao-value: 0;
+  --bpm-flag: 'gray';
 }
 
 @property --progress-value-bpm {
@@ -42,7 +43,7 @@
 .bpm {
   background: 
     radial-gradient(closest-side, white 79%, transparent 80% 100%),
-    conic-gradient(rgb(211, 13, 13) calc(var(--progress-value-bpm) * 1%), rgb(250, 164, 179) 0);
+    conic-gradient(var(--bpm-flag) calc(var(--progress-value-bpm) * 1%), rgb(250, 164, 179) 0);
   animation: bpm-progress 2s 1 forwards;
 }
 

@@ -57,10 +57,24 @@ function randomBeatValue() {
     });
 }
 
+function checkHeartBeatRange(bpm) {
+    return new Promise((resolve) => {
+        if (bpm < 50) {
+            resolve(document.documentElement.style
+                .setProperty('--bpm-flag', 'green'));
+        } else {
+            resolve(document.documentElement.style
+                .setProperty('--bpm-flag', 'red'));
+        }
+    })
+}
+
 // randomly add new data
 setInterval(async function () {
     const newLabel = ' '//(Math.random() + 1).toString(36).substring(7);
     const newData = await randomBeatValue();
+
+    await checkHeartBeatRange(newData)
 
     document.documentElement.style
     .setProperty('--bpm-value', newData);
