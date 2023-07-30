@@ -1,14 +1,3 @@
-//set property:
-
-
-document.documentElement.style
-    .setProperty('--oxigenacao-value', 98);
-
-//get property
-
-getComputedStyle(document.documentElement)
-    .getPropertyValue('--bpm-value'); // returns value
-
 const labels = [
     ' ',
     ' ',
