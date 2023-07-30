@@ -39,7 +39,7 @@
 
 .progress-bar-bpm::before {
   counter-reset: percentage var(--progress-value-bpm);
-  content: counter(percentage);
+  content: counter(percentage) 'bpm';
 }
 
 .bpm {
@@ -54,11 +54,13 @@
 }
 
 .progress-bar-oxigenacao {
-  width: 100px;
-  height: 100px;
+  margin-top: 30%;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   
   /* to center the percentage value */
+  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,7 +68,7 @@
 
 .progress-bar-oxigenacao::before {
   counter-reset: percentage var(--progress-value-oxigenacao);
-  content: counter(percentage);
+  content: counter(percentage) '%';
 }
 
 .oxigenacao {

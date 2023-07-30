@@ -33,7 +33,11 @@
     </nav>
 
     <div class="container my-5">
-        <h1>Hello, world!</h1>
+        <div class="row">
+            <div class="col-6">
+                <h1>Monitor Sinais Vitais</h1>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <h2>
@@ -48,19 +52,19 @@
                 </div>
             </div>
             <div class="col-10">
-                <canvas id="myChart"></canvas>
+                <canvas id="bpm-chart"></canvas>
               </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <h2>
-                    <label for="bpm">Oxigenação sanguínea</label>
+                    <label for="oxigenacao">Oxigenação sanguínea</label>
                 </h2>
             </div>
         </div>
         <div class="mt-2 row px-0 center">
             <div class="col-2 progress-bar-container">
-                <div class="progress-bar-bpm bpm">
+                <div class="progress-bar-oxigenacao oxigenacao">
                     <progress id="oxigenacao" min="0" max="100" value="92"></progress>
                 </div>
             </div>

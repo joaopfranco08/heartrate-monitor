@@ -9,10 +9,6 @@ document.documentElement.style
 getComputedStyle(document.documentElement)
     .getPropertyValue('--bpm-value'); // returns value
 
-const canvas = document.getElementById('myChart');
-
-canvas.height = 75;
-
 const labels = [
     ' ',
     ' ',
@@ -20,35 +16,46 @@ const labels = [
     ' ',
 ];
 
-const data = {
+const labels2 = [
+    ' ',
+    ' ',
+    ' ',
+    ' ',
+];
+
+const dataBpm = {
     labels: labels,
     datasets: [{
-        label: 'Test',
+        label: 'bpm',
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 4],
+        data: [0, 0, 0, 0],
+        fill: false
     }]
 };
 
-const config = {
+const dataOxigen = {
+    labels: labels2,
+    datasets: [{
+        label: '% Oxigênio',
+        backgroundColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(75, 192, 192)',
+        data: [0, 0, 0, 0],
+        fill: false
+    }]
+};
+
+const configBpm = {
     type: 'line',
-    data: data,
+    data: dataBpm,
     options: {pointStyle: false}
 };
 
-const myChart = new Chart(
-    canvas,
-    config
-);
-
-// function to update the chart 
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
-}
+const configOx = {
+    type: 'line',
+    data: dataOxigen,
+    options: {pointStyle: false}
+};
 
 // random bpm value generator
 function randomBeatValue() {
@@ -69,19 +76,6 @@ function checkHeartBeatRange(bpm) {
         }
     })
 }
-
-// randomly add new data
-setInterval(async function () {
-    const newLabel = ' '//(Math.random() + 1).toString(36).substring(7);
-    const newData = await randomBeatValue();
-
-    await checkHeartBeatRange(newData)
-
-    document.documentElement.style
-    .setProperty('--bpm-value', newData);
-    addData(myChart, newLabel, newData);
-
-}, 100);
 
 
 class RealTimeChart {
@@ -117,18 +111,32 @@ class RealTimeChart {
     }
 }
 
-const oxChart= new RealTimeChart('oxigenacao-chart', ['', '', ''], data, config)
+const oxChart= new RealTimeChart('oxigenacao-chart', ['', '', ''], dataOxigen, configOx)
 
+const bpmChart= new RealTimeChart('bpm-chart', ['', '', ''], dataBpm, configBpm)
 // randomly add new data
 setInterval(async function () {
     const newLabel = ' '//(Math.random() + 1).toString(36).substring(7);
-    const newData = await randomBeatValue();
+    const newDataOx = await randomBeatValue();
+    const newDataBpm = await randomBeatValue();
 
-    await checkHeartBeatRange(newData)
+    await checkHeartBeatRange(newDataBpm)
 
     document.documentElement.style
-    .setProperty('--bpm-value', newData);
+    .setProperty('--bpm-value', newDataBpm);
 
-    oxChart.updateData(newLabel, newData);
+    //oxChart.updateData(newLabel, newData);
 
-}, 100);
+    document.documentElement.style
+    .setProperty('--oxigenacao-value', newDataOx);
+
+    oxChart.updateData(newLabel, newDataOx);
+
+    bpmChart.updateData(newLabel, newDataBpm);
+
+}, 1000);
+
+
+
+// randomly add new data
+
