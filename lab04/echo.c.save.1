@@ -1,3 +1,4 @@
+
 /** Programa baseado no codigo disponibilizado em:
 * Derek Molloy, Exploring Raspberry Pi: Interfacing to the Real World with Embedded Linux,
 * Wiley 2016, ISBN 978-1-119-1868-1, http://www.exploringrpi.com/
@@ -28,7 +29,7 @@ int main(){
       perror("Falha ao escrever na saida\n");
       return -1;
    }
-   usleep(200000);                     // Espera 100ms pela resposta do Arduino
+   usleep(10000000);                     // Espera 100ms pela resposta do Arduino
    unsigned char receive[100];         // cria um buffer para receber os dados
    if ((count = read(file, (void*)receive, 100))<0){        // recebe os dados
       perror("Falha ao ler da entrada\n");

@@ -17,7 +17,7 @@ data1 = np.zeros(200)
 curve1 = p1.plot(data1)
 ptr1 = 0
 
-conexaoSerial = serial.Serial('/dev/ttyACM1',115200)
+conexaoSerial = serial.Serial('/dev/ttyACM0',115200)
 conexaoSerial.write(b'i')
 
 

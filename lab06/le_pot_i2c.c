@@ -21,14 +21,19 @@ int main(int argc, char **argv){
       perror("Falha de comunicacao com o Arduino.\n");
       return 1;
    }
-
+   
    // verifica se foi passado um valor para o limite do alarme como argumento do programa
    if(argc==2){
      if (sscanf(argv[1],"%i",&alert)!=1) { // converte o argumento string para int
         perror("Falha ao ler o valor do limite do alarme.\n");
         return 1;
      }
+   alert = -1;
      if (alert>1023 || alert<0) {
+        if(alert == -1){
+            char alertbuf2[] = {0x10};
+            printf("aaaaaa");
+         };
         perror("Limite do alarme fora da faixa especificada.\n");
         return 1;
      }

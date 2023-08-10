@@ -28,7 +28,7 @@ int main(){
       perror("Falha ao escrever na saida\n");
       return -1;
    }
-   usleep(200000);                     // Espera 100ms pela resposta do Arduino
+   usleep(10000000);                     // Espera 100ms pela resposta do Arduino
    unsigned char receive[100];         // cria um buffer para receber os dados
    if ((count = read(file, (void*)receive, 100))<0){        // recebe os dados
       perror("Falha ao ler da entrada\n");
