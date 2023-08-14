@@ -8,7 +8,10 @@ void setup(){
 
 void loop() {
   SensorIn = analogRead(A0);
-  Serial.write(SensorIn);
+  byte byte1 = SensorIn >> 8;
+  byte byte2 = SensorIn & 0xFF;
+  Serial.write(byte1);
+  Serial.write(byte2);
   
   if(SensorIn < 500){
     flag = 1;
