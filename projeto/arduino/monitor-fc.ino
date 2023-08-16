@@ -30,7 +30,7 @@ void loop() {
   //Serial.println(SensorIn);
 
   cond = SensorIn * x;
-  if (cond > 1020 && flag == 0) {
+  if (cond > 990 && flag == 0) {
     start = millis();
     flag = 1;
     //Serial.print("Time ");
@@ -40,13 +40,13 @@ void loop() {
 
   SensorIn = analogRead(A0);
 
-  if (SensorIn < 1019) {
+  if (SensorIn < 989) {
     x = 1;
   }
 
   cond = SensorIn * x;
 
-  if (cond > 1020 && flag == 1) {
+  if (cond > 990 && flag == 1) {
     finish = millis();
     flag = 0;
     //Serial.print("Time2 ");
@@ -58,10 +58,10 @@ void loop() {
     //Serial.println(frequencia);
 
     bpm = frequencia * 60;
+    Serial.println(bpm);
     if (bpm > 60 && bpm <= 150) {
       //Serial.write(bpm);
       //delay(500);
-      Serial.println(bpm);
       acum = acum + bpm;
       i++;
       x = 0.01;
@@ -105,4 +105,5 @@ void loop() {
     digitalWrite(buzzer, LOW);  // Turn off the buzzer when alerta is 0
     digitalWrite(7, LOW);
   }
+  delay(50);
 }
