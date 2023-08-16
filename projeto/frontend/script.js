@@ -1,3 +1,6 @@
+var hostURL = "ws://localhost:7071";
+webSocket = new WebSocket(hostURL);
+
 const labels = [
     ' ',
     ' ',
@@ -45,6 +48,15 @@ const configOx = {
     data: dataOxigen,
     options: {pointStyle: false}
 };
+
+const updateChartData = async(chart, value, label, range) => {
+    await range(value)
+    document.documentElement.style
+    .setProperty('--bpm-value', value);
+        document.documentElement.style
+    .setProperty('--bpm-value', value);
+    chart.updateData(label, value)
+}
 
 // random bpm value generator
 function randomBeatValue() {
@@ -100,31 +112,18 @@ class RealTimeChart {
     }
 }
 
-const oxChart= new RealTimeChart('oxigenacao-chart', ['', '', ''], dataOxigen, configOx)
+// const oxChart= new RealTimeChart('oxigenacao-chart', ['', '', ''], dataOxigen, configOx)
 
 const bpmChart= new RealTimeChart('bpm-chart', ['', '', ''], dataBpm, configBpm)
 // randomly add new data
-setInterval(async function () {
-    const newLabel = ' '//(Math.random() + 1).toString(36).substring(7);
-    const newDataOx = await randomBeatValue();
-    const newDataBpm = await randomBeatValue();
 
-    await checkHeartBeatRange(newDataBpm)
 
-    document.documentElement.style
-    .setProperty('--bpm-value', newDataBpm);
-
-    //oxChart.updateData(newLabel, newData);
-
-    document.documentElement.style
-    .setProperty('--oxigenacao-value', newDataOx);
-
-    oxChart.updateData(newLabel, newDataOx);
-
-    bpmChart.updateData(newLabel, newDataBpm);
-
-}, 1000);
-
+webSocket.onopen = function(){}
+webSocket.onmessage = function(msg){
+    updateChartData(bpmChart, msg.data,' ',checkHeartBeatRange)
+    console.log(msg.data)
+}
+webSocket.onclose = function(){}
 
 
 // randomly add new data
