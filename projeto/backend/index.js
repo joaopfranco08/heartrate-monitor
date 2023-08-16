@@ -6,7 +6,7 @@ const wss = new WebSocket.Server({ port: 7071 });
 
 // Create a port
 const arduino = new SerialPort({
-    path: 'COM3',
+    path: '/dev/ttyACM0',
     baudRate: 9600,
   })
   

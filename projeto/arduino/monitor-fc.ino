@@ -9,6 +9,7 @@ int alerta = 0;
 unsigned long previousMillis = 0;
 unsigned long currentMillis = 0;
 const long interval = 500;  // Buzzer on-off interval in milliseconds
+int buzz = 0;
 int acum_old;
 void setup() {
   // put your setup code here, to run once:
@@ -17,20 +18,12 @@ void setup() {
   pinMode(7, OUTPUT);
 }
 
-void ativarAlerta() {
-  digitalWrite(buzzer, HIGH);
-  digitalWrite(buzzer, LOW);
-  delay(2000);
-  
-}
-
 void loop() {
   // put your main code here, to run repeatedly:
   SensorIn = analogRead(A0);
   //Serial.println(SensorIn);
-
   cond = SensorIn * x;
-  if (cond > 990 && flag == 0) {
+  if (cond > 700 && flag == 0) {
     start = millis();
     flag = 1;
     //Serial.print("Time ");
@@ -39,14 +32,21 @@ void loop() {
   }
 
   SensorIn = analogRead(A0);
-
-  if (SensorIn < 989) {
-    x = 1;
+  
+  if(SensorIn < 860){
+     digitalWrite(7, HIGH);
+  }
+  else{
+    digitalWrite(7, LOW);
   }
 
+  if (SensorIn < 699) {
+    x = 1;
+  }
+  
   cond = SensorIn * x;
 
-  if (cond > 990 && flag == 1) {
+  if (cond > 700 && flag == 1) {
     finish = millis();
     flag = 0;
     //Serial.print("Time2 ");
@@ -79,31 +79,23 @@ void loop() {
     acum = 0;
     i = 0;
   }
-
-  if (bpmMed > 120) {
-    unsigned long currentMillis = millis();
+  
+  if(bpm > 120 && SensorIn < 860){
+    currentMillis = millis();
     if (currentMillis - previousMillis >= interval) {
-      previousMillis = currentMillis;  // Save the last time the buzzer was toggled
-      if (digitalRead(buzzer) == LOW) {
-        digitalWrite(7, HIGH);
+      if (buzz == 0) {
         digitalWrite(buzzer, HIGH);
+        buzz = 1;
       } else {
         digitalWrite(buzzer, LOW);
-        digitalWrite(7, LOW);
+        buzz = 0;
       }
-      acum = 0;
-      //bpmMed = bpm/(currentMillis - previousMillis);
-      if (bpm > 150) {
-        bpm = bpm / currentMillis * 60;
-        bpmMed = acum + bpm;
-        //Serial.println(bpmMed);
-      } else if (isinf(bpmMed)) {
-        bpmMed = 120;
-      }
+      previousMillis = currentMillis;
     }
-  } else {
-    digitalWrite(buzzer, LOW);  // Turn off the buzzer when alerta is 0
-    digitalWrite(7, LOW);
   }
+  else{
+    digitalWrite(buzzer, LOW);
+  };
   delay(50);
 }
+
