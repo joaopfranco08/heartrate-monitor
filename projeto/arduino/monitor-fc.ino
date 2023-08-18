@@ -22,7 +22,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   SensorIn = analogRead(A0);
   //Serial.println(SensorIn);
-  cond = SensorIn * x;
+  cond = SensorIn * x; 
   if (cond > 700 && flag == 0) {
     start = millis();
     flag = 1;
